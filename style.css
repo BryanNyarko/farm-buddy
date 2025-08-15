@@ -1,0 +1,116 @@
+    *{
+      box-sizing: border-box;
+    }
+
+
+@font-face {
+    font-family: 'HeadSemi';
+    src: url('fonts/HeadSemi.ttf');
+}
+
+@font-face {
+    font-family: 'inter';
+    src: url('fonts/Inter_28pt-Regular.ttf');
+}
+
+    html,body{ margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image:linear-gradient(rgba(0,0,0,0.5)), url('images/agri.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    h1{color: rgb(224, 224, 224);
+    font-family: 'HeadSemi';
+    text-shadow: black 0px 2px 5px;
+  }
+
+
+    main{height: inherit;
+      width: inherit;
+        display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .welcome-container{height: auto;
+      width: 75%;
+      background-color: rgba(87, 87, 87, 0.5);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      padding: 2rem 1rem;
+  
+    }
+
+    .welcome-txt-box{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: .5rem;
+      width: 100%;
+    }
+
+    .welcome-btn{ background-color: #9EDB00;
+      font-size: 1.1em;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      box-shadow:black 0px 2px 10px;
+    }
+
+    .sign{ display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+   #signin-screen,#signup-screen{height: inherit;
+      width: inherit;
+      gap: 20px;
+      background-color: rgba(87, 87, 87, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+   }
+
+   #signin-form,#signup-form{
+       display: flex;
+      flex-direction: column;
+    width: 100%;
+    padding: 2rem;
+   }
+
+   .form-btn{ margin-top: 1rem;
+    background-color: #9EDB00;
+    border: none;
+    padding: .5rem;
+    border-radius: .5rem;
+   }
+
+   .form-btn:hover,.welcome-btn:hover{
+    background-color: #3e5600;
+    transition: .25s;
+   }
+
+    @media screen and (max-width:376px){
+      main{
+        font-size: .9rem;
+      }
+      body{
+      object-fit: cover;
+      }
+    }

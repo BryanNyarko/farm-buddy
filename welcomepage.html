@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Farm Buddy</title>
+</head>
+
+<body>
+  <h1>Welcome To Farm Buddy</h1>
+  <main>  
+      <div class="welcome-container">
+        <div class = "welcome-txt-box">
+          <button type="submit" class="welcome-btn" id="go-signin">Sign in</button>  <br>
+          <button type="submit"class="welcome-btn" id="go-signup">Sign up</button>
+        </div>
+      </div>
+
+      <section class="sign">
+        <div id="signin-screen" style="display: none;">
+          <form action="" method="post" id="signin-form">
+            <label for="signin-email">Email:</label>
+              <input type="text" name="email" id="signin-email" required>
+            <br>
+            <label for="signin-password">Password:</label>
+              <input type="password" name="password" id="signin-password" required>
+            <br>
+            <div>
+              <button class="form-btn">Sign In</button> 
+             <button  type="button" onclick="goBack()" class="form-btn">Go Back</button>
+            </div>
+            
+          </form>
+        </div>
+
+        <div id="signup-screen"  style="display: none;">
+          <form action="" method="post" id="signup-form">
+          <label for="signup-name">Name:</label>
+            <input type="text" name="name" id="signup-name" required>
+          <br>
+          <label for="email">Email:</label>
+            <input type="text" name="email" id="signup-email" required>
+          <br>
+          <label for="signup-password">Password:</label>
+          <input type="password" name="password" id="signup-password" required>
+
+          <label for="signup-cpassword">Confirm Password:</label>
+          <input type="password" name="cpassword" id="signup-cpassword" required>
+             <div>
+              <button class="form-btn">Sign Up</button> 
+             <button  type="button" onclick="goBack()" class="form-btn">Go Back</button>
+            </div>
+          </form>
+
+
+        </div>
+      </section>
+      
+  </main>
+ 
+
+<script src="app.js" type="module">
+ </script>
+</body>
+</html>
+

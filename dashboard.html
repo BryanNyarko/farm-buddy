@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farm Buddy — Dashboard</title>
+ 
+  <style>
+*{box-sizing: border-box;}
+    body{margin: 0;
+      padding: 0;
+ background-image: none;
+    }
+
+  .nav{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(69, 136, 194);
+  }
+  
+  .left-nav{float: left;}
+
+  .nav-midd
+
+    .dashboard-card{
+      background: rgba(87,87,87,0.5);
+      backdrop-filter: blur(10px);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 1rem auto;
+      box-shadow: black 0px 2px 10px;
+    }
+
+    .center{
+      display:flex;
+       align-items:center;
+        justify-content:center; flex-direction:column; 
+        gap:.5rem;
+    }
+  </style>
+
+</head>
+
+<header class="nav">
+  <div class="nav-bar">
+    <div class="left-nav">
+      <p>Farm Buddy</p>
+
+    </div>
+
+    <div class="middle">Welcome Farmer</div>
+
+    <div class="right-nav">
+      <ul>
+        <li>
+           My Profile
+        </li>
+      </ul>
+      
+
+    </div>
+  </div>
+</header>
+<body>
+  <main class="center">
+    <h1 id="greeting">Welcome</h1>
+    <section class="dashboard-card">
+      <h3>Getting started</h3>
+      <p>This is your Farm Buddy dashboard. We’ll add Weather, Market Prices and Farm Profile next.</p>
+    </section>
+  </main>
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
