@@ -3,42 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/60732127d0.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
   <title>Farm Buddy — Dashboard</title>
- 
-  <style>
-*{box-sizing: border-box;}
-    body{margin: 0;
-      padding: 0;
- background-image: none;
-    }
+ <head>
 
-  .nav{
-    display: flex;
-    flex-direction: row;
-    background-color: rgb(69, 136, 194);
-  }
-  
-  .left-nav{float: left;}
+<style>
+* {
+  box-sizing: border-box;
+}
 
-  .nav-midd
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'inter', sans-serif;
+  background-color: #f4f4f4; 
+  font-size: .8rem;
+}
 
-    .dashboard-card{
-      background: rgba(87,87,87,0.5);
-      backdrop-filter: blur(10px);
-      padding: 1rem 1.25rem;
-      border-radius: 12px;
-      max-width: 700px;
-      margin: 1rem auto;
-      box-shadow: black 0px 2px 10px;
-    }
+/* Top nav */
+.nav-bar {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  background-color: white;
+  font-size: .8rem;
+  top: 0;
+  width: inherit;
+  z-index: 1000;
+}
 
-    .center{
-      display:flex;
-       align-items:center;
-        justify-content:center; flex-direction:column; 
-        gap:.5rem;
-    }
-  </style>
+.nav{position: fixed;
+top: 0;
+display: flex;
+width: 100%;
+}
+
+/* Dashboard card */
+.dashboard-card {
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 1rem auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Center content wrapper */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding: 1rem;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  margin-top: 8em;
+  background-color: white;
+  color: #888;
+  padding: .5em;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px 10px 0 0;
+  font-size: 0.8rem;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+/* Bottom nav list */
+.bottom-nav-list ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.bottom-nav-list li {
+  cursor: pointer;
+}
+</style>
 
 </head>
 
@@ -46,19 +97,20 @@
   <div class="nav-bar">
     <div class="left-nav">
       <p>Farm Buddy</p>
-
     </div>
 
-    <div class="middle">Welcome Farmer</div>
-
     <div class="right-nav">
-      <ul>
-        <li>
-           My Profile
-        </li>
-      </ul>
-      
-
+            <ul class="dropdown">
+              <li>
+                 <i class="fa-solid fa-user" style="color: #000000;"></i>
+                  <ul class="dropdown-logout">
+                     <li id="logout-btn">
+                      Log Out
+                     </li>
+                  </ul>
+              </li>
+              
+            </ul>  
     </div>
   </div>
 </header>
@@ -70,6 +122,27 @@
       <p>This is your Farm Buddy dashboard. We’ll add Weather, Market Prices and Farm Profile next.</p>
     </section>
   </main>
+
+  <footer class="bottom-nav">
+    <div class="bottom-nav-list">
+      <ul>
+        <li  class="buttom-list-items">
+          <i class="fa-solid fa-house" style="color: #000000;"></i>
+          Home
+        </li>
+        <li class="buttom-list-items">
+          <i class="fa-solid fa-cloud" style="color: #000000;"></i>
+          Weather
+        </li>
+        <li class="buttom-list-items">
+          <i class="fa-solid fa-clipboard-list" style="color: #000000;"></i>
+          Tasks
+        </li>
+      </ul>
+      
+
+    </div>
+  </footer>
   <script type="module" src="dashboard.js"></script>
 </body>
 </html>
