@@ -13,7 +13,7 @@
     src: url('fonts/Inter_28pt-Regular.ttf');
 }
 
-    html,body{ margin: 0;
+    html,.body{ margin: 0;
       padding: 0;
       height: 100%;
       width: 100%;
@@ -21,7 +21,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-image:linear-gradient(rgba(0,0,0,0.5)), url('images/agri.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -110,7 +109,15 @@
       main{
         font-size: .9rem;
       }
+
       body{
       object-fit: cover;
       }
+    }
+
+    @media screen and (max-width:325px){
+      footer{
+        font-size:.7rem;
+      }
+      
     }

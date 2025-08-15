@@ -41,6 +41,44 @@ display: flex;
 width: 100%;
 }
 
+.dropdown{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.dropdown,.dropdown-content{
+  list-style: none;
+}
+
+.dropdown .dropdown-content{
+  position: absolute;
+ top: 100%;
+  right: 0;
+  z-index: 1;
+  padding-right:1em; 
+  color: red;
+  width: inherit;
+   display: none;
+}
+
+.dropdown-content li{
+  width: 100%;
+  background-color: #d1d1d1;
+  padding:.3em;
+}
+
+
+header .dropdown:hover .dropdown-content{
+  display: block;
+}
+
+header .dropdown-content::after .dropdown-content{
+  display: none;
+}
+
+
 /* Dashboard card */
 .dashboard-card {
   background: white;
@@ -103,7 +141,7 @@ footer {
             <ul class="dropdown">
               <li>
                  <i class="fa-solid fa-user" style="color: #000000;"></i>
-                  <ul class="dropdown-logout">
+                  <ul class="dropdown-content">
                      <li id="logout-btn">
                       Log Out
                      </li>
