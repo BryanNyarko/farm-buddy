@@ -25,6 +25,18 @@ body {
   z-index: 99;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;            
+  width: 100%;
+  padding: 1rem;
+  padding-bottom: 6rem; 
+  margin-top: 1rem;   
+  align-items: center;
+  justify-content: flex-start; 
+}
+
 /* Top nav */
 .nav-bar {
   height: 40px;
@@ -75,10 +87,12 @@ header #log-btn:hover .dropdown-content{
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 75%;
+  max-height: none;
+  overflow:visible;
+
 }
 
-/* Center content wrapper */
+
 .center {
   display: flex;
   flex-direction: column;
@@ -100,6 +114,78 @@ header #log-btn:hover .dropdown-content{
 
 }
 
+#task-list, #all-tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Task card */
+#task-list li, #all-tasks-list li {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin: 0.6rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px;
+  font-family: 'Inter', sans-serif;
+  transition: transform 0.15s ease-in-out;
+}
+
+#task-list li:hover, #all-tasks-list li:hover {
+  transform: translateY(-2px);
+}
+
+/* Task text */
+#task-list li span, #all-tasks-list li span {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+/* Buttons shared */
+#task-list li button, #all-tasks-list li button {
+  margin-left: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+/* Green = Done / Toggle */
+.done-btn, .toggle-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+.done-btn:hover, .toggle-btn:hover {
+  background-color: #45a049;
+}
+
+
+.edit-btn {
+  background-color: #2196F3;
+  color: white;
+}
+.edit-btn:hover {
+  background-color: #0b7dda;
+}
+
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #da190b;
+}
+
+
+li span[style*="line-through"] {
+  color: gray;
+}
+
 .center  input{
   border: none;
   background-color: #e0e0e0;
@@ -108,7 +194,7 @@ header #log-btn:hover .dropdown-content{
   border-radius: .3em;
 }
 
-.center button{
+.center #addMb{
    border: none;
   background-color: #9ddb00da;
   width: fit-content;
@@ -145,6 +231,15 @@ footer {
 .bottom-nav-list li {
   cursor: pointer;
 }
+
+.w-card{display: flex;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  font-size: .8em;
+  gap: 1em;
+  
+}
 </style>
 
 </head>
@@ -154,7 +249,10 @@ footer {
     <div class="left-nav">
       <p>Farm Buddy</p>
     </div>
-
+   <div class="w-card" id="weather-card">
+  <h3>Weather</h3>
+  <p id="weather-info">Loading weather...</p>
+</div>
     <div class="right-nav">
             <ul class="dropdown">
                      <li id="logout-btn">
@@ -164,23 +262,35 @@ footer {
   </div>
 </header>
 <body>
-  <main>
-    <div class="center">
 
-    <h1 id="greeting">Welcome</h1>
+  <main>
+
+     
+
+    <div class="center">
+      <h1 id="greeting">Welcome</h1>
     <div class="dashboard-card">
+      
       <h3>My Task</h3>
       <form id="add-task-form">
         <input type="text" id="task-title" placeholder="Task title" required><br>
         <input type="date" id="task-date" required><br>
         <input type="time" id="task-time"><br>
-        <button type="submit">Add Task</button>
+        <button type="submit" id="addMb">Add Task</button>
       </form>
       <ul id="task-list"></ul>
+      <a href="tasks.html" 
+   style="display:block; text-align:center; margin-top:0.5rem; font-size:0.9rem; color:#2196F3;">
+  See all tasks →
+</a>
+
+      
+  
     </div>
     </div>
   </main>
-
+  
+  
   <footer class="bottom-nav">
     <div class="bottom-nav-list">
       <ul>
@@ -190,18 +300,19 @@ footer {
            Home
           </a>
         </li>
-          
-        <li class="buttom-list-items">
-          <a>
-            <i class="fa-solid fa-cloud" style="color: #000000;"></i>
-          Weather
-          </a>
-        </li>
 
         <li class="buttom-list-items">
           <a href="tasks.html">
             <i class="fa-solid fa-clipboard-list" style="color: #000000;"></i>
             Tasks
+          </a>
+        </li>
+
+        <li>
+          <a href="profile.html">
+            <i class="fa-solid fa-user" style="color: #000000;"></i>
+            Profile
+
           </a>
         </li>
       </ul>
