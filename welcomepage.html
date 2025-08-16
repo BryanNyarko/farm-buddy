@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4CAF50">
   <title>Farm Buddy</title>
 </head>
 
@@ -11,7 +13,7 @@
 
     
   
-  <main>  
+  <main class=".main">  
     <h4>Welcome To Farm Buddy</h4>
       <div class="welcome-container">
         <div class = "welcome-txt-box">
@@ -63,7 +65,11 @@
   </main>
  
 
-<script src="app.js" type="module">
+<script src="app.js" type="module">  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js")
+      .then(() => console.log("Service Worker registered"));
+  }
+
  </script>
 </body>
 </html>

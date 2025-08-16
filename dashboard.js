@@ -2,25 +2,38 @@ import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
   collection, addDoc, serverTimestamp,
-  query, orderBy, onSnapshot,
-  updateDoc, deleteDoc, doc
+  query, orderBy, onSnapshot, limit,  
+  updateDoc, deleteDoc, doc, getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const greetingEl  = document.getElementById('greeting');
 const logoutBtn   = document.getElementById('logout-btn');
 const addTaskForm = document.getElementById('add-task-form');
 const taskListEl  = document.getElementById('task-list');
+const weatherInfo = document.getElementById('weather-info');
 
 let currentUser = null;
 
 // Auth state listener
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = 'welcomepage.html';
   } else {
     currentUser = user;
-    greetingEl.textContent = `Welcome, ${user.displayName || 'Farmer'} `;
+    greetingEl.textContent = `Welcome, ${user.displayName || 'Farmer'}`;
     loadTasks();
+
+    // Load profile to fetch weather
+    const profileRef = doc(db, 'users', user.uid);
+    const profileSnap = await getDoc(profileRef);
+    if (profileSnap.exists()) {
+      const profile = profileSnap.data();
+      if (profile.location) {
+        loadWeather(profile.location);
+      } else {
+        weatherInfo.textContent = "Set location in profile.";
+      }
+    }
   }
 });
 
@@ -63,10 +76,11 @@ addTaskForm?.addEventListener('submit', async (e) => {
 
 // Load + Render Tasks
 function loadTasks() {
-  const q = query(
-    collection(db, 'users', currentUser.uid, 'tasks'),
-    orderBy('dueAt', 'asc')
-  );
+ const q = query(
+  collection(db, 'users', currentUser.uid, 'tasks'),
+  orderBy('dueAt', 'asc'),
+  limit(3)  
+);
 
   onSnapshot(q, (snapshot) => {
     taskListEl.innerHTML = '';
@@ -102,4 +116,26 @@ function loadTasks() {
       taskListEl.appendChild(li);
     });
   });
+}
+
+// Load Weather
+async function loadWeather(location) {
+  const apiKey = "5d7bd7d69480c899375bcdbaca67ffba"; 
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(location)}&units=metric&appid=${apiKey}`
+    );
+    const data = await response.json();
+
+    if (data.cod === 200) {
+      const temp = Math.round(data.main.temp);
+      const condition = data.weather[0].main;
+      weatherInfo.textContent =` ${temp}°C — ${condition};`
+    } else {
+      weatherInfo.textContent = "Weather not found.";
+    }
+  } catch (err) {
+    weatherInfo.textContent = "Error loading weather.";
+    console.error(err);
+  }
 }

@@ -35,7 +35,7 @@
   }
 
 
-    main{height: inherit;
+    .main{height: inherit;
       width: inherit;
         display: flex;
         flex-direction: column;
@@ -44,6 +44,7 @@
       width: 100%;
       height: 100%;
       margin-top: 25%;
+      padding-bottom: 4rem;
     }
 
     .welcome-container{height: auto;
@@ -127,11 +128,17 @@
       body{
       object-fit: cover;
       }
+
+      *{
+        font-size: .9rem;
+      }
     }
 
     @media screen and (max-width:325px){
       footer{
         font-size:.7rem;
       }
-      
+      *{
+        font-size: .8rem;
+      }
     }
