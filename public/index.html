@@ -31,8 +31,11 @@
               <input type="password" name="password" id="signin-password" required>
             <br>
             <div>
-              <button class="form-btn">Sign In</button> 
-             <button  type="button" onclick="goToSignUpPage()" class="form-btn">Go Back</button>
+              <button class="form-btn">Sign In</button> <br>
+              <div class="form-base">
+                Don't have an account?
+                 <a  type="button" onclick="goToSignUpPage()" class="form-base-btn">Sign up</a>
+              </div>
             </div>
             
           </form>
@@ -48,13 +51,16 @@
           <br>
           <label for="signup-password">Password:</label>
           <input type="password" name="password" id="signup-password" required>
-
+            <br>
           <label for="signup-cpassword">Confirm Password:</label>
           <input type="password" name="cpassword" id="signup-cpassword" required>
              <div>
               <br>
-              <button class="form-btn">Sign Up</button> 
-             <button  type="button" onclick="goToSignInPage()" class="form-btn">Go Back</button>
+              <button class="form-btn">Sign Up</button> <br>
+              <div class="form-base">
+                Already have an account?
+                 <a  type="button" onclick="goToSignInPage()" class="form-base-btn">Sign in</a>
+              </div>
             </div>
           </form>
 

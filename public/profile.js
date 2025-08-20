@@ -1,50 +1,18 @@
-import { auth, db } from './firebase-config.js';
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
-  doc, setDoc, getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { auth } from "./firebase-config.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-const backBtn = document.getElementById('back-btn');
-const profileForm = document.getElementById('profile-form');
-const nameInput = document.getElementById('profile-name');
-const locationInput = document.getElementById('profile-location');
-
-let currentUser = null;
-
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = 'welcomepage.html';
+// Load user info
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("user-name").innerText = user.displayName || "Anonymous";
+    document.getElementById("user-email").innerText = user.email;
   } else {
-    currentUser = user;
-    await loadProfile();
+    window.location.href = "index.html"; // redirect if not logged in
   }
 });
 
-backBtn?.addEventListener('click', () => {
-  window.location.href = 'dashboard.html';
-});
-
-// Load profile data if exists
-async function loadProfile() {
-  const ref = doc(db, 'users', currentUser.uid);
-  const snap = await getDoc(ref);
-  if (snap.exists()) {
-    const data = snap.data();
-    nameInput.value = data.name || '';
-    locationInput.value = data.location || '';
-  }
-}
-
-// Save profile
-profileForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  try {
-    await setDoc(doc(db, 'users', currentUser.uid), {
-      name: nameInput.value.trim(),
-      location: locationInput.value.trim()
-    }, { merge: true });
-    alert("Profile saved!");
-  } catch (err) {
-    console.error("Error saving profile:", err);
-  }
+// Log out
+document.getElementById("logout-btn").addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.href = "index.html";
 });

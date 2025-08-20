@@ -14,7 +14,7 @@ html, body {
 }
 
 /* WELCOME PAGE */
- .body {background-image: url('/pics/welcome-hero.png');
+ .body {background-image: url('pics/welcome-hero.png');
   background-position:center;
   background-size: cover;
 }
@@ -30,10 +30,10 @@ main {
 
 .welcome-container,#signin-screen,#signup-screen {
   width: min(560px, 90%);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 2rem;
-  background: rgba(255,255,255,0.85);
+  background: rgb(255, 255, 255);
+  border: 1px solid black;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   gap: 1rem;
 
@@ -62,7 +62,7 @@ main {
   padding: 1rem;
   margin-top: .75rem;
   color: white;
-}dr4drf5u65
+}
 
 .welcome-btn:hover {
   background-color: #3e5600;
@@ -72,6 +72,10 @@ main {
 /*signings*/
 .sign{padding: 1.2rem;
   gap: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
 }
 
@@ -87,6 +91,26 @@ main {
   border: none;
   padding: .5rem;
   color: white;
+}
+
+#signin-form,#signup-form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  width: inherit;
+}
+
+ .form-base{
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  font-size: .8rem;
+}
+
+.form-base-btn{
+  width: 5rem;
+  color: rgb(47, 99, 255);
+  font-weight: 600;
 }
 
 /* NAVBAR & FOOTER */
@@ -221,9 +245,10 @@ footer {
 }
 
 /* MOBILE POLISH */
-@media (max-width: 600px) {
+@media (max-width: 600px) and (max-height:900px) {
   h2, h3, h4 { font-size: 1.1rem; }
   .dashboard-card { padding: 1rem; }
   .welcome-container { padding: 1.2rem; }
   .welcome-btn { font-size: .95rem; }
+  
 }
