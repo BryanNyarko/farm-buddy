@@ -32,13 +32,16 @@ goSignin?.addEventListener('click', () => {
   welcomeContainer.style.display = 'none';
   signupScreen.style.display = 'none';
   signinScreen.style.display = 'block';
+  document.getElementById("welcome-header").innerHTML="Sign In";
 });
 
 // show signUp
 goSignup?.addEventListener('click', () => {
+  document.getElementById("welcome-header").innerHTML="Sign Up";
   welcomeContainer.style.display = 'none';
   signupScreen.style.display = 'block';
   signinScreen.style.display = 'none';
+  
 });
 
 // signup
@@ -93,9 +96,18 @@ signinForm?.addEventListener('submit', async (e) => {
   }
 });
 
-// return to welcome page
-window.goBack = function () {
-  signinScreen.style.display = 'none';
+// return to signin
+window.goToSignInPage = function () {
+  signinScreen.style.display = 'block';
   signupScreen.style.display = 'none';
-  welcomeContainer.style.display = 'block';
+  welcomeContainer.style.display = 'none';
 };
+
+window.goToSignUpPage = function () {
+  signinScreen.style.display = 'none';
+  signupScreen.style.display = 'block';
+  welcomeContainer.style.display = 'none';
+};
+
+
+

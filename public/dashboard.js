@@ -17,12 +17,12 @@ let currentUser = null;
 // Auth state listener
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = 'welcomepage.html';
+    window.location.href = 'index.html';
   } else {
     currentUser = user;
     greetingEl.textContent = `Welcome, ${user.displayName || 'Farmer'}`;
     loadTasks();
-
+63
     // Load profile to fetch weather
     const profileRef = doc(db, 'users', user.uid);
     const profileSnap = await getDoc(profileRef);

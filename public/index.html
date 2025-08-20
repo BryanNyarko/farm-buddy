@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#4CAF50">
   <title>Farm Buddy</title>
@@ -11,10 +12,8 @@
 
 <body class="body">
 
-    
-  
-  <main class=".main">  
-    <h4>Welcome To Farm Buddy</h4>
+  <main class="main">  
+    <h4 id="welcome-header">Welcome To Farm Buddy</h4>
       <div class="welcome-container">
         <div class = "welcome-txt-box">
           <button type="submit" class="welcome-btn" id="go-signin">Sign in</button>  <br>
@@ -33,7 +32,7 @@
             <br>
             <div>
               <button class="form-btn">Sign In</button> 
-             <button  type="button" onclick="goBack()" class="form-btn">Go Back</button>
+             <button  type="button" onclick="goToSignUpPage()" class="form-btn">Go Back</button>
             </div>
             
           </form>
@@ -53,8 +52,9 @@
           <label for="signup-cpassword">Confirm Password:</label>
           <input type="password" name="cpassword" id="signup-cpassword" required>
              <div>
+              <br>
               <button class="form-btn">Sign Up</button> 
-             <button  type="button" onclick="goBack()" class="form-btn">Go Back</button>
+             <button  type="button" onclick="goToSignInPage()" class="form-btn">Go Back</button>
             </div>
           </form>
 
