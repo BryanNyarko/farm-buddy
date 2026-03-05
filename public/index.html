@@ -41,27 +41,36 @@
           </form>
         </div>
 
-        <div id="signup-screen"  style="display: none;">
-          <form action="" method="post" id="signup-form">
-          <label for="signup-name">Name:</label>
-            <input type="text" name="name" id="signup-name" required>
-          <br>
-          <label for="email">Email:</label>
-            <input type="text" name="email" id="signup-email" required>
-          <br>
-          <label for="signup-password">Password:</label>
-          <input type="password" name="password" id="signup-password" required>
-            <br>
-          <label for="signup-cpassword">Confirm Password:</label>
-          <input type="password" name="cpassword" id="signup-cpassword" required>
-             <div>
-              <br>
-              <button class="form-btn">Sign Up</button> <br>
-              <div class="form-base">
-                Already have an account?
-                 <a  type="button" onclick="goToSignInPage()" class="form-base-btn">Sign in</a>
-              </div>
-            </div>
+       <div id="signup-screen" style="display: none;">
+  <form action="" method="post" id="signup-form">
+    <label for="signup-name">Name:</label>
+    <input type="text" id="signup-name" required>
+    <br>
+
+    <label for="signup-email">Email:</label>
+    <input type="text" id="signup-email" required>
+    <br>
+
+    <label for="signup-password">Password:</label>
+    <input type="password" id="signup-password" required>
+    <br>
+
+    <label for="signup-cpassword">Confirm Password:</label>
+    <input type="password" id="signup-cpassword" required>
+    <br>
+
+    <label for="signup-location">Location:</label>
+    <input type="text" id="signup-location" required>
+    <br>
+
+    <button class="form-btn">Sign Up</button>
+    <div class="form-base">
+      Already have an account?
+      <a type="button" onclick="goToSignInPage()" class="form-base-btn">Sign in</a>
+    </div>
+  </form>
+</div>
+
           </form>
 
 

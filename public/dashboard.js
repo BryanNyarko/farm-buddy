@@ -46,6 +46,7 @@ logoutBtn?.addEventListener('click', async () => {
   }
 });
 
+
 // Add Task
 addTaskForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -118,24 +119,57 @@ function loadTasks() {
   });
 }
 
-// Load Weather
-async function loadWeather(location) {
-  const apiKey = "5d7bd7d69480c899375bcdbaca67ffba"; 
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(location)}&units=metric&appid=${apiKey}`
-    );
-    const data = await response.json();
+async function loadWeather(city = "Accra") {
+  const apiKey = "5d7bd7d69480c899375bcdbaca67ffba";
 
-    if (data.cod === 200) {
-      const temp = Math.round(data.main.temp);
-      const condition = data.weather[0].main;
-      weatherInfo.textContent =` ${temp}°C — ${condition};`
-    } else {
-      weatherInfo.textContent = "Weather not found.";
+  try {
+    // 1. Get coordinates for the city
+    const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city},GH&limit=1&appid=${apiKey}`;
+    const geoRes = await fetch(geoUrl);
+    const geoData = await geoRes.json();
+
+    if (geoData.length === 0) {
+      document.getElementById("weather-info").innerText = "Location not found";
+      return;
     }
+
+    const { lat, lon } = geoData[0];
+
+    // 2. Get weather using lat/lon
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    const weatherRes = await fetch(weatherUrl);
+    const data = await weatherRes.json();
+
+    if (data.cod !== 200) {
+      document.getElementById("weather-info").innerText = "Weather not found";
+      return;
+    }
+
+    const temp = Math.round(data.main.temp);
+    const condition = data.weather[0].description;
+
+    document.getElementById("weather-info").innerText =
+      `${city}: ${temp}°C, ${condition}`;
   } catch (err) {
-    weatherInfo.textContent = "Error loading weather.";
+    document.getElementById("weather-info").innerText = "Error loading weather";
     console.error(err);
   }
 }
+
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+  const city = userSnap.data().location || "Accra"; // fallback
+  loadWeather(city);
+} else {
+  loadWeather(); // fallback
+}
+
+  } else {
+    window.location.href = "index.html";
+  }
+});

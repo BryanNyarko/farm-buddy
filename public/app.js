@@ -45,39 +45,44 @@ goSignup?.addEventListener('click', () => {
 });
 
 // signup
-const signupForm = document.getElementById('signup-form');
-signupForm?.addEventListener('submit', async (e) => {
+
+const signupForm = document.getElementById("signup-form");
+
+signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById('signup-name').value.trim();
-  const email = document.getElementById('signup-email').value.trim();
-  const password = document.getElementById('signup-password').value;
-  const confirmPassword = document.getElementById('signup-cpassword').value;
+  const name = document.getElementById("signup-name").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+  const cpassword = document.getElementById("signup-cpassword").value;
+  const location = document.getElementById("signup-location").value;
 
-  if (password !== confirmPassword) {
+  if (password !== cpassword) {
     alert("Passwords do not match!");
     return;
   }
 
   try {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
 
-    // save name on auth profile
-    await updateProfile(cred.user, { displayName: name });
+    // Set display name
+    await updateProfile(userCred.user, { displayName: name });
 
-    // save extra data in Firestore
-    await setDoc(doc(db, 'users', cred.user.uid), {
-      name,
-      email,
-      createdAt: serverTimestamp()
+    // Save extra info to Firestore
+    await setDoc(doc(db, "users", userCred.user.uid), {
+      name: name,
+      email: email,
+      location: location
     });
 
-    // go to dashboard
-    window.location.href = 'dashboard.html';
-  } catch (error) {
-    alert("Signup error: " + error.message);
+    alert("Signup successful!");
+    window.location.href = "dashboard.html";
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
   }
 });
+
 
 // signin
 const signinForm = document.getElementById('signin-form');
