@@ -25,5 +25,3 @@ https://farm-buddy-c7a84.web.app
 **Nyarko Bryan**
 
 Github: https://github.com/BryanNyarko
-
-GitHub: https://github.com/YOUR_USERNAME
